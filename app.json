@@ -5,6 +5,7 @@
       "bundler": "metro"
     },
     "name": "voice-notes",
-    "slug": "voice-notes"
+    "slug": "voice-notes",
+    "icon": "./assets/icons/apple-touch-icon.png"
   }
 }

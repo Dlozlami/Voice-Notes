@@ -7,7 +7,7 @@ export default function AppLayout() {
     <Tabs
       screenOptions={{
         tabBarShowLabel: false, // Hide tab labels
-        activeTintColor: '#red',
+        activeTintColor: '#e63f59',
       }}
     >
       <Tabs.Screen

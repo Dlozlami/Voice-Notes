@@ -33,7 +33,7 @@ export default function Timer({ recording, setDuration }) {
 
   return (
     <ImageBackground
-      source={require('../asserts/images/timerBG.jpg')}
+      source={require('../assets/images/timerBG.jpg')}
       style={{width: '100%', height: '100%'}}
     >
         <View style={styles.container}>
@@ -53,6 +53,6 @@ const styles = StyleSheet.create({
   },
   timer: {
     color: '#FFF', // White text color
-    fontSize: 24, // Adjust the font size as needed
+    fontSize: 48, // Adjust the font size as needed
   },
 });

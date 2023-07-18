@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 
 export default function Timer({ recording, setDuration }) {
   const [timer, setTimer] = useState(0);
+  let lastDuration=0;
 
   useEffect(() => {
     let intervalId;
@@ -13,7 +14,8 @@ export default function Timer({ recording, setDuration }) {
       }, 10);
     } else {
       clearInterval(intervalId);
-      setTimer(0); // Reset timer to 0
+      console.log('Now: '+timer)
+      setTimer(0); 
       setDuration(timer);
     }
 

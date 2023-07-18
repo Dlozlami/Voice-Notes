@@ -24,10 +24,10 @@ export default function Recorder({
       circle2Ref.current.style.border = '1px #e63f59 solid';
       circle3Ref.current.style.border = '1px #e63f59 solid';
     } else {
-      // Reset border styles to #eeeee when recording stops
-      circle1Ref.current.style.border = '1px #eeeee solid';
-      circle2Ref.current.style.border = '1px #eeeee solid';
-      circle3Ref.current.style.border = '1px #eeeee solid';
+      // Reset border styles to #f2f2f2 when recording stops
+      circle1Ref.current.style.border = '1px #f2f2f2 solid';
+      circle2Ref.current.style.border = '1px #f2f2f2 solid';
+      circle3Ref.current.style.border = '1px #f2f2f2 solid';
     }
   }, [recording]);
 
@@ -68,10 +68,10 @@ export default function Recorder({
     const uri = audio.getURI();
     setLastRecordingURI(uri);
 
-    // Reset border styles to #eeeee
-    circle1Ref.current.style.border = '1px #eeeee solid';
-    circle2Ref.current.style.border = '1px #eeeee solid';
-    circle3Ref.current.style.border = '1px #eeeee solid';
+    // Reset border styles to #f2f2f2
+    circle1Ref.current.style.border = '1px #f2f2f2 solid';
+    circle2Ref.current.style.border = '1px #f2f2f2 solid';
+    circle3Ref.current.style.border = '1px #f2f2f2 solid';
 
     console.log('Recording stopped and stored at', uri);
 
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     borderRadius: '50%',
     padding: 15,
     borderWidth: 1,
-    borderColor: '#eeeee',
+    borderColor: '#f2f2f2',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     borderRadius: '50%',
     padding: 10,
     borderWidth: 1,
-    borderColor: '#eeeee',
+    borderColor: '#f2f2f2',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
     borderRadius: '50%',
     padding: 5,
     borderWidth: 1,
-    borderColor: '#eeeee',
+    borderColor: '#f2f2f2',
     alignItems: 'center',
     justifyContent: 'center',
   },

@@ -3,9 +3,7 @@ import React, { useState } from 'react';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
 
-export default function Recorder({ setLastRecordingURI }) {
-  const [audio, setAudio] = useState(null);
-  const [recording, setRecording] = useState(false);
+export default function Recorder({ recording,setRecording,audio,setAudio,setLastRecordingURI }) {
 
   async function startRecording() {
     try {
@@ -15,11 +13,12 @@ export default function Recorder({ setLastRecordingURI }) {
         allowsRecordingIOS: true,
         playsInSilentModeIOS: true,
       });
-
+      
       console.log('Starting recording..');
       const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
-      setAudio(recording);
       setRecording(true);
+      setAudio(recording);
+      
       console.log('Recording started');
     } catch (err) {
       console.error('Failed to start recording', err);
@@ -39,13 +38,13 @@ export default function Recorder({ setLastRecordingURI }) {
   }
 
   return (
-    <View>
+    <View style={styles.container}>
       <Pressable onPress={recording ? stopRecording : startRecording}>
         <Text>
           {recording ? (
             <Ionicons name="stop-circle-outline" size={48} color="white" />
           ) : (
-            <Ionicons name="mic" size={48} color="white" />
+            <Ionicons name="mic" size={72} color="white" />
           )}
         </Text>
       </Pressable>
@@ -53,4 +52,11 @@ export default function Recorder({ setLastRecordingURI }) {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+  },
+});

@@ -12,9 +12,11 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.halfScreen}>
+      <View style={styles.topScreen}>
       <Timer recording={recording} setDuration={setDuration} />
-      <Recorder audio={audio} setAudio={setAudio} setRecording={setRecording} setLastRecordingURI={setLastRecordingURI}/>
+      </View>
+      <View style={styles.bottomScreen}>
+      <Recorder recording={recording} audio={audio} setAudio={setAudio} setRecording={setRecording} setLastRecordingURI={setLastRecordingURI}/>
       </View>
     </View>
   );
@@ -24,9 +26,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  halfScreen: {
+  topScreen: {
     justifyContent: "flex-start",
     backgroundColor: "#FFF", 
+    height: Dimensions.get("window").height / 2,
+  },
+  bottomScreen: {
+    justifyContent: "flex-end",
+    backgroundColor: "#eeeee", 
     height: Dimensions.get("window").height / 2,
   },
 });

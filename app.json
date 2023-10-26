@@ -6,6 +6,9 @@
     },
     "name": "voice-notes",
     "slug": "voice-notes",
-    "icon": "./assets/icons/apple-touch-icon.png"
+    "icon": "./assets/icons/apple-touch-icon.png",
+    "plugins": [
+      "expo-router"
+    ]
   }
 }

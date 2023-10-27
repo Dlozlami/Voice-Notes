@@ -4,15 +4,13 @@ import PlayAudio from "./playAudio";
 import UpdateAudio from "./updateAudio";
 import DeleteAudio from "./deleteAudio";
 
-
-export default function ListItem() {
-  
+export default function ListItem({ record }) {
   return (
     <View style={styles.container}>
       <PlayAudio />
       <View style={styles.details}>
-        <Text style={styles.text}>Voice note</Text>
-        <Text>00:00:00</Text>
+        <Text style={styles.text}>{record.title}</Text>
+        <Text>{record.duration}</Text>
       </View>
 
       <UpdateAudio />

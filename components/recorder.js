@@ -8,8 +8,13 @@ import {
   TextInput,
 } from "react-native";
 import { Audio } from "expo-av";
-import { Ionicons } from "@expo/vector-icons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Ionicons,AntDesign } from "@expo/vector-icons";
+import {
+  storeData,
+  getAllRecords,
+  updateRecord,
+  deleteRecord,
+} from "./recordsDB";
 
 export default function Recorder({
   recording,
@@ -21,15 +26,8 @@ export default function Recorder({
 }) {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [filename, setFilenameInternal] = useState("");
-
-  const storeData = async (value) => {
-    try {
-      await AsyncStorage.setItem("voice-notes-db", value);
-    } catch (e) {
-      // saving error
-      console.log("Error storing data in async: ", e);
-    }
-  };
+  const [duration, setDuration] = useState(0);
+  const [audioURL, setAudioURL] = useState("");
 
   async function startRecording() {
     try {
@@ -56,23 +54,41 @@ export default function Recorder({
   async function stopRecording() {
     console.log("Stopping recording..");
     setRecording(false);
-    await audio.stopAndUnloadAsync();
+    const recordingStatus = await audio.stopAndUnloadAsync();
     await Audio.setAudioModeAsync({
       allowsRecordingIOS: false,
     });
     const uri = audio.getURI();
-    const duration = audio.
+    setAudioURL(uri);
     setLastRecordingURI(uri);
-
+    setDuration(recordingStatus.durationMillis);
     console.log("Recording stopped and stored at", uri);
-
+    console.log("Duration", recordingStatus.durationMillis);
     setIsModalVisible(true); // Open the modal after stopping the recording
   }
 
   function handleSave() {
+    storeData({ url: audioURL, title: filename, duration: duration });
+    console.log("Saving....",{ url: audioURL, title: filename, duration: duration });
     setFilename(filename); // Save the filename using setFilename
     setIsModalVisible(false); // Close the modal
     setFilenameInternal(""); // Reset the internal filename state
+  }
+
+  function formatDuration(milliseconds) {
+    const seconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(seconds / 60);
+
+    const remainingMilliseconds = Math.floor(
+      milliseconds - (seconds * 1000) / 10
+    );
+
+    // Use String.padStart to add leading zeros as needed
+    const formattedDuration = `${minutes.toString().padStart(2, "0")}:${seconds
+      .toString()
+      .padStart(2, "0")}:${remainingMilliseconds.toString().padStart(2, "0")}`;
+
+    return formattedDuration;
   }
 
   return (
@@ -90,6 +106,7 @@ export default function Recorder({
                   />
                 ) : (
                   <Ionicons name="mic" size={72} color="white" />
+                  
                 )}
               </Text>
             </Pressable>

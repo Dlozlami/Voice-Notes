@@ -1,27 +1,29 @@
-import { StyleSheet, Text, ImageBackground, SafeAreaView } from "react-native";
 import React, { useEffect, useState } from "react";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import ListItem from "../components/listItem";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getAllRecords } from "../components/recordsDB";
 
-export default function list() {
-  let recordings =[]
+
+export default function List() {
+  const [listOfRecordings, setListOfRecordings] = useState([]);
 
   const getData = async () => {
     try {
-      const value = await AsyncStorage.getItem("voice-notes-db");
-      if (value !== null) {
-        // value previously stored
-        recordings = value;
-      }
+      // Retrieve the list of recordings from the database
+      getAllRecords((recordings) => {
+        setListOfRecordings(recordings);
+      });
+      console.log("listOfRecordings: ", listOfRecordings);
+
     } catch (e) {
-      // error reading value
+      // Error reading value
       console.log("Error getting data in async: ", e);
     }
   };
 
   useEffect(() => {
     getData();
-  });
+  }, []);
 
   return (
     <ImageBackground
@@ -29,10 +31,17 @@ export default function list() {
       style={{ width: "100%", height: "100%" }}
     >
       <SafeAreaView style={styles.container}>
-        <ListItem />
+        {listOfRecordings.map((record) => (
+          <ListItem key={record.id} record={record} />
+        ))}
       </SafeAreaView>
     </ImageBackground>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingVertical:10
+  },
+});

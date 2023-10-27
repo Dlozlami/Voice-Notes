@@ -10,13 +10,12 @@ export default function Page() {
   const [lastRecordingURI, setLastRecordingURI] = useState("");
   const [filename, setFilename] = useState("");
 
-  useEffect(() => {
-    // Log the filename and duration when filename is set
-    if (filename) {
-      console.log("Filename:", filename);
-      console.log("Duration:", duration);
-    }
-  }, [filename, duration]);
+  // useEffect(() => {
+  //   // Log the filename and duration when filename is set
+  //   if (filename) {
+  //     console.log("Filename:", filename);
+  //   }
+  // }, [filename]);
 
   return (
     <View style={styles.container}>

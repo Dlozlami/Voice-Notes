@@ -34,7 +34,7 @@ Start the react server
 **Client:** React Native, Expo, CSS3, SQLite
 
 
-Using [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory and Redux\Toolkit.
+Using [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory.
 
 ## 🚀 How to make
 

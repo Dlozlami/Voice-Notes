@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 import { Audio } from 'expo-av';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function PlayAudio({ soundObject }) {
+export default function PlayAudio({ audioURL }) {
+  const [sound, setSound] = useState(new Audio.Sound());
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playAudio = async () => {
     try {
-      await soundObject.playAsync();
+      if (sound._loaded) {
+        await sound.replayAsync();
+      } else {
+        await sound.loadAsync({ uri: audioURL });
+        await sound.playAsync();
+      }
       setIsPlaying(true);
     } catch (error) {
       console.error('Failed to play the audio', error);
@@ -17,13 +23,26 @@ export default function PlayAudio({ soundObject }) {
 
   const stopAudio = async () => {
     try {
-      await soundObject.stopAsync();
-      await soundObject.unloadAsync();
+      await sound.stopAsync();
       setIsPlaying(false);
     } catch (error) {
       console.error('Failed to stop the audio', error);
     }
   };
+
+  useEffect(() => {
+    const playbackStatusSubscription = sound.setOnPlaybackStatusUpdate((status) => {
+      if (status.didJustFinish) {
+        // Audio has finished playing
+        setIsPlaying(false);
+      }
+    });
+
+    return () => {
+      sound.unloadAsync();
+      playbackStatusSubscription.remove();
+    };
+  }, [sound]);
 
   return (
     <View>

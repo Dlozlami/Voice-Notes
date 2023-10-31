@@ -7,18 +7,16 @@ import DeleteAudio from "./deleteAudio";
 export default function ListItem({ record }) {
   return (
     <View style={styles.container}>
-      <PlayAudio />
+      <PlayAudio audioURL={record.url}/>
       <View style={styles.details}>
         <Text style={styles.text}>{record.title}</Text>
         <Text>{record.duration}</Text>
       </View>
-
       <UpdateAudio />
       <DeleteAudio />
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",

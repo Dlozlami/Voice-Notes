@@ -13,11 +13,11 @@ export default function List() {
       getAllRecords((recordings) => {
         setListOfRecordings(recordings);
       });
-      console.log("listOfRecordings: ", listOfRecordings);
+      console.log("list.js line 16 listOfRecordings: ", listOfRecordings);
 
     } catch (e) {
       // Error reading value
-      console.log("Error getting data in async: ", e);
+      console.log("Error getting recording data in async: ", e);
     }
   };
 
@@ -42,6 +42,6 @@ export default function List() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical:10
+    paddingVertical:30
   },
 });

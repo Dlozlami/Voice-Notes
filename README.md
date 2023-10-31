@@ -7,13 +7,13 @@ This app records voice notes and stores them in an sqlite DB.
 Clone the project
 
 ```bash
-  git clone https://github.com/Dlozlami/Shopping-List.git
+  git clone https://github.com/Dlozlami/Voice-Notes.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd Shopping-List
+  cd Voice-Notes
 ```
 
 Install dependencies
@@ -28,23 +28,10 @@ Start the react server
   npm run start
 ```
 
-## Start the server
-
-Go to the Server directory
-
-```bash
-  cd Server
-```
-Start Express Server
-```bash
-  npx nodemon .\express.js 
-```
 
 ## Tech Stack
 
-**Client:** React Native, Expo, Redux/Toolkit, CSS3
-
-**Server:** Node, Express, MongoDB
+**Client:** React Native, Expo, CSS3, SQLite
 
 
 Using [`expo-router`](https://expo.github.io/router) to build native navigation using files in the `app/` directory and Redux\Toolkit.

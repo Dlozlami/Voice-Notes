@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import ListItem from "../components/listItem";
 import { getAllRecords } from "../components/recordsDB";
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function List() {
@@ -21,9 +22,14 @@ export default function List() {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // Fetch or update data when the tab is focused
+      getData();
+    }, [])
+  );
 
   return (
     <ImageBackground

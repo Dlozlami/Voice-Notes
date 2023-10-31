@@ -18,13 +18,14 @@ db.transaction((tx) => {
 
 // Function to store data in the database
 function storeData({ url, title, duration }) {
-    console.log("storeData function....");
+  console.log("storeData function....");
   db.transaction((tx) => {
     tx.executeSql(
       "INSERT INTO recordings (url, title, duration) VALUES (?, ?, ?)",
       [url, title, duration],
       () => {
         console.log("Record added successfully.");
+        alert("Record added successfully.");
       },
       (error) => {
         console.error("Error inserting data:", error);
@@ -57,6 +58,7 @@ function updateRecord(id, { url, title, duration }) {
       [url, title, duration, id],
       () => {
         console.log(`Record with ID ${id} updated.`);
+        alert(`Record with ID ${id} updated.`);
       },
       (error) => {
         console.error("Error updating record:", error);
@@ -73,6 +75,7 @@ function deleteRecord(id) {
       [id],
       () => {
         console.log(`Record with ID ${id} deleted.`);
+        alert(`Record with ID ${id} deleted.`);
       },
       (error) => {
         console.error("Error deleting record:", error);

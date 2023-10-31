@@ -1,17 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
-import axios from 'axios';
+import { StyleSheet, TouchableOpacity } from "react-native";
+import React from "react";
+import { MaterialIcons } from "@expo/vector-icons";
+import { deleteRecord } from "./recordsDB";
 
-export default function DeleteAudio(){
-  
-  const apiEndpoint = 'http://10.255.66.152:8080/api/recordings/';
-
+export default function DeleteAudio({ recordID }) {
   return (
-    <View>
+    <TouchableOpacity onPress={() => deleteRecord(recordID)}>
       <MaterialIcons name="delete-forever" size={24} color="black" />
-    </View>
-  )
+    </TouchableOpacity>
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

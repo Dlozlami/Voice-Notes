@@ -8,13 +8,8 @@ import {
   TextInput,
 } from "react-native";
 import { Audio } from "expo-av";
-import { Ionicons,AntDesign } from "@expo/vector-icons";
-import {
-  storeData,
-  getAllRecords,
-  updateRecord,
-  deleteRecord,
-} from "./recordsDB";
+import { Ionicons } from "@expo/vector-icons";
+import { storeData } from "./recordsDB";
 
 export default function Recorder({
   recording,
@@ -69,7 +64,11 @@ export default function Recorder({
 
   function handleSave() {
     storeData({ url: audioURL, title: filename, duration: duration });
-    console.log("Saving....",{ url: audioURL, title: filename, duration: duration });
+    console.log("Saving....", {
+      url: audioURL,
+      title: filename,
+      duration: duration,
+    });
     setFilename(filename); // Save the filename using setFilename
     setIsModalVisible(false); // Close the modal
     setFilenameInternal(""); // Reset the internal filename state
@@ -106,7 +105,6 @@ export default function Recorder({
                   />
                 ) : (
                   <Ionicons name="mic" size={72} color="white" />
-                  
                 )}
               </Text>
             </Pressable>

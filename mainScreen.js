@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Pressable, Modal, TextInput, SafeAreaView } from 'react-native';
 import { Audio } from 'expo-av';
 import { Ionicons } from '@expo/vector-icons';
-import axios from 'axios';
+
 
 export default function App() {
   const [recording, setRecording] = useState();
